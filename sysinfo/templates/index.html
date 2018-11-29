@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="block1">
+<h1>Information about system load!</h1>
+  <h2>Request status is {{var['Status']}}! </h2>
+    <b>CPU Usage: </b>{{var['payload']['CpuUsage']}}<br>
+    <b>Total memory: </b>{{var['payload']['TotalMemory']}} {{var['ShowOption']}}<br>
+    <b>Free memory: </b>{{var['payload']['FreeMemory']}} {{var['ShowOption']}}<br>
+    <b>Used memory: </b>{{var['payload']['UsedMemory']}} %<br>
+    <b>Total disk size: </b>{{var['payload']['DiskSize']}} {{var['ShowOption']}}<br>
+    <b>Disk free space: </b>{{var['payload']['FreeSpace']}} {{var['ShowOption']}}<br>
+    <b>Used disk size: </b>{{var['payload']['UsedDisk']}} %<br>
+</div>
+{% endblock %}
