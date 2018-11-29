@@ -1,0 +1,3 @@
+graft sysinfo/static
+graft sysinfo/templates
+global-exclude *.pyc
