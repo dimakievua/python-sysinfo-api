@@ -1,6 +1,6 @@
 PREPARATION AND RUN:
 - Fetch code into repository:
-git clone -b master 
+git clone -b master git@github.com:dimakievua/python-sysinfo-api.git
 
 - Install minimum modules needed to run application:
 pip install flask json
