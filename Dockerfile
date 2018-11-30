@@ -23,11 +23,20 @@ ENV ENV=$ENV
 ADD . /app
 # execute everyone's favorite pip command, pip install -r
 RUN apt-get update && apt-get install -y gcc && rm -rf /var/lib/apt/lists/* \
+<<<<<<< HEAD
     && python3 -m venv venv && . venv/bin/activate && pip install -e . \
+=======
+>>>>>>> 6c1116f4f95d81ba3832971d31921b137de41ed8
     && pip install --trusted-host pypi.python.org -r requirment-${ENV}.txt
 # expose port 80 for the Flask app to run on
 EXPOSE 5000
 # define entypoint
+<<<<<<< HEAD
 ENTRYPOINT ["bash"]
 # execute the Flask app
 CMD ["-c"]
+=======
+# ENTRYPOINT ["flask"]
+# execute the Flask app
+# CMD ["run"]
+>>>>>>> 6c1116f4f95d81ba3832971d31921b137de41ed8
