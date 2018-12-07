@@ -14,7 +14,7 @@ phases:
       - echo Perform test on commit ${COMMIT_HASH}
       - echo Run tests...
       - mkdir ./htmlcov && pwd && ls -la
-      - docker run -i $REPOSITORY_URI:latest -v `pwd`/htmlcov:/app/htmlcov
+      - docker run -i -v `pwd`/htmlcov:/app/htmlcov $REPOSITORY_URI:latest
         bash -c ". venv/bin/activate && coverage run -m pytest && coverage html"
   post_build:
     commands:
