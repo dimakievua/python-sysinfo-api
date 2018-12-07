@@ -13,8 +13,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build --no-cache=true --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
-        --build-arg BUILD_VERSION="0.0.1" --build-arg ENV=dev --build-arg VCS_REF=$COMMIT_HASH \
+      - docker build --no-cache=true --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') 
+        --build-arg BUILD_VERSION="0.0.1" --build-arg ENV=dev --build-arg VCS_REF=$COMMIT_HASH 
         -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
