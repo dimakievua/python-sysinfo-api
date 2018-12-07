@@ -1,5 +1,4 @@
-import psutil
-import json
-import flask
-import pytest
-
+Flask==1.0.2
+psutil==5.4.8
+pytest==4.0.1
+coverage==4.5.2
