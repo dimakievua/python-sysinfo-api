@@ -96,4 +96,23 @@ Application has next endpoints:
 /healthcheck  - return Ok, could be used for automatic healthcheck testing
 /api/all  - return JSON object with metadata and system laod info
 
+
+CONTAINERS:
+Create base container:
+
+Run test:
+
+Create production package:
+
+Create production image:
+
+Deploy image to ECR:
+- Create ECR repository if not exists
+- Identify image:
+  > docker images
+- Tag image to satisfy ECR name convention:
+  > docker tag <ImageID> <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<my-web-app>
+- Push image to repo:
+  > docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<my-web-app>
+  
 Created by Dmytro Zhernosiekov based on Flask Tutorial documentation.
