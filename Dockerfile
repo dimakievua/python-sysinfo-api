@@ -28,6 +28,6 @@ RUN apt-get update && apt-get install -y gcc && rm -rf /var/lib/apt/lists/* \
 # expose port 80 for the Flask app to run on
 EXPOSE 5000
 # define entypoint
-ENTRYPOINT ["bash"]
+# ENTRYPOINT ["bash"]
 # execute the Flask app
-CMD ["-c"]
+# CMD ["-c"]
