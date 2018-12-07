@@ -18,7 +18,7 @@ phases:
         bash -c ". venv/bin/activate && coverage run -m pytest && coverage html"
   post_build:
     commands:
-      - echo Test result on commit ${COMMIT_HASH} on `date`
+      - echo Test result on commit $COMMIT_HASH on `date`
       - echo Packing artifacts...
       - zip –r testresult.zip ./htmlcov
 artifacts:

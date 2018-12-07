@@ -11,15 +11,16 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build --no-cache=true --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
-        --build-arg BUILD_VERSION="0.0.1" --build-arg ENV=dev --build-arg VCS_REF=$COMMIT_HASH \
-        -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo Perform test on commit ${COMMIT_HASH}
+      - echo Run tests...
+      - mkdir ./dist && pwd && ls -la
+      - docker run -i -v `pwd`/dist:/app/dist $REPOSITORY_URI:latest
+        bash -c "setup.py bdist_wheel"
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Production package $COMMIT_HASH on `date`
+      - echo Packing artifacts...
+      - ls -la ./dist
+artifacts:
+  files:
+    - ./dist/*
