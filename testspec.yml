@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=267844006800.dkr.ecr.eu-west-1.amazonaws.com/sysinfo/base
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Perform test on commit ${COMMIT_HASH}
+      - echo Run tests...
+      - mkdir ./htmlcov && pwd && ls -la
+      - docker run -ti $REPOSITORY_URI:latest -v ./htmlcov:/app/htmlcov
+        bash -c ". venv/bin/activate && coverage run -m pytest && coverage html"
+  post_build:
+    commands:
+      - echo Test result on commit ${COMMIT_HASH} on `date`
+      - echo Packing artifacts...
+      - zip –r artifact.zip ./htmlcov
+artifacts:
+  files:
+    - artifact.zip
